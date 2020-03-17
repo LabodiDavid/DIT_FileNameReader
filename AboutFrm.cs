@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,17 +11,21 @@ using System.Windows.Forms;
 
 namespace DIT_FileNameReader
 {
-    public partial class ErrorFrm : Form
+    public partial class AboutFrm : Form
     {
-        public ErrorFrm(string errormsg)
+        public AboutFrm()
         {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+            string version = fvi.FileVersion;
             InitializeComponent();
-            ErrorBox.Text = errormsg;
-            this.Text = "DIT - Hibaüzenet";
+            this.VersionLabel.Text = version;
+            this.Text = "DIT - Filename Reader - About";
         }
 
-        private void ErrorFrm_Load(object sender, EventArgs e)
+        private void AboutFrm_Load(object sender, EventArgs e)
         {
+            
             this.ControlBox = true;
             this.MaximizeBox = false;
             this.AutoSize = false;

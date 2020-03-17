@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFrm));
             this.FilenamesBox = new System.Windows.Forms.TextBox();
             this.DirectoryDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.button1 = new System.Windows.Forms.Button();
@@ -40,6 +41,7 @@
             this.DirectoryBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // FilenamesBox
@@ -88,9 +90,9 @@
             this.checkBox2.AutoSize = true;
             this.checkBox2.Location = new System.Drawing.Point(32, 159);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(194, 17);
+            this.checkBox2.Size = new System.Drawing.Size(88, 17);
             this.checkBox2.TabIndex = 4;
-            this.checkBox2.Text = "Fájl listázás megadott kiterjesztéssel";
+            this.checkBox2.Text = "Fájlnév szűrő";
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
@@ -154,11 +156,23 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Mappa elérési útvonala";
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(728, 428);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(60, 13);
+            this.linkLabel1.TabIndex = 11;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Részletek..";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.DirectoryBox);
@@ -170,6 +184,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.FilenamesBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainFrm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -192,6 +207,7 @@
         public System.Windows.Forms.TextBox DirectoryBox;
         public System.Windows.Forms.CheckBox checkBox1;
         public System.Windows.Forms.TextBox CriteriumBox;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace DIT_FileNameReader
 {
@@ -22,6 +23,7 @@ namespace DIT_FileNameReader
         public string[] withoutextfiles;
         public int fileindex;
         public int lengthindex;
+        string defPath = new FileInfo(Assembly.GetEntryAssembly().Location).Directory.ToString();
         public MainFrm()
         {
             InitializeComponent();
@@ -95,7 +97,27 @@ namespace DIT_FileNameReader
         }
         public void FileProcess()
         {
-            doPreview();
+            SaveFileDialog save = new SaveFileDialog();
+            save.FileName = "Fajlnevek.txt";
+            save.Filter = "Text File | *.txt";
+
+            if (save.ShowDialog() == DialogResult.OK)
+
+            {
+
+                StreamWriter sw = new StreamWriter(save.OpenFile());
+
+                for (int i = 0; i < FilenamesBox.Lines.Count(); i++)
+
+                {
+
+                    sw.WriteLine(FilenamesBox.Lines[i].ToString());
+
+                }
+                sw.Dispose();
+                sw.Close();
+
+            }
         }
         public void Preview()
         {
@@ -150,13 +172,17 @@ namespace DIT_FileNameReader
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox2.Checked)
+            if (checkBox2.Checked==true)
             {
+                extension = "*";
                 CriteriumBox.Visible = true;
+                doPreview();
             }
-            else
+            if (checkBox2.Checked==false)
             {
+                extension = "*";
                 CriteriumBox.Visible = false;
+                doPreview();
             }
         }
 
@@ -167,22 +193,31 @@ namespace DIT_FileNameReader
 
         private void CriteriumBox_Enter(object sender, EventArgs e)
         {
-            CriteriumBox.Text = "";
+            if (CriteriumBox.Text=="*")
+            {
+                CriteriumBox.Text = "";
+            }
+            else
+            {
+                CriteriumBox.Text = extension;
+            }
         }
 
         private void CriteriumBox_Leave(object sender, EventArgs e)
         {
-            if (!(CriteriumBox.Text=="Pl.: *.mp3"))
+            if (!(CriteriumBox.Text=="*" || String.IsNullOrWhiteSpace(CriteriumBox.Text)))
             {
                 extension = CriteriumBox.Text;
                 CriteriumBox.Text = extension;
                 isExtensionFiltered = true;
+                doPreview();
             }
             else
             {
-                CriteriumBox.Text = "Pl.: *.mp3";
                 extension = "*";
+                CriteriumBox.Text = extension;
                 isExtensionFiltered = false;
+                doPreview();
             }
             
         }
@@ -191,7 +226,7 @@ namespace DIT_FileNameReader
         {
             if (isSelectedFolder==false && IsdefaultPath())
             {
-                DirectoryBox.Text = "";
+                DirectoryBox.Text = defPath;
             }
             else
             {
@@ -205,7 +240,7 @@ namespace DIT_FileNameReader
         {
                 if (IsdefaultPath())
                 {
-                    DirectoryBox.Text = "Pl.: D:/Zenek";
+                    DirectoryBox.Text = defPath;
                 }
                 else
                 {
@@ -213,16 +248,6 @@ namespace DIT_FileNameReader
                     DirectoryBox.Text = path;
                     isSelectedFolder = true;
                     doPreview();
-                if (IsdefaultPath())
-                {
-                    DirectoryBox.Text = "Pl.: D:/Zenek";
-                }
-                else
-                {
-                    path = DirectoryBox.Text;
-                    DirectoryBox.Text = path;
-                    doPreview();
-                }
             }
                 
 
@@ -265,6 +290,12 @@ namespace DIT_FileNameReader
         private void CriteriumBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            AboutFrm about = new AboutFrm();
+            about.Show();
         }
     }
 }
