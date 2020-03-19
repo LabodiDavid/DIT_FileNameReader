@@ -14,9 +14,12 @@ namespace DIT_FileNameReader
 {
     public partial class MainFrm : Form
     {
+        public string[] languages = { "English", "Hungarian" };
+        public static int selectedLang = 1;
         public bool listExtension;
         public bool isSelectedFolder;
         public bool isExtensionFiltered;
+        public bool isCount;
         public static string extension;
         public static string path;
         public string[] files;
@@ -53,6 +56,7 @@ namespace DIT_FileNameReader
             this.MinimumSize = new System.Drawing.Size(this.Width, this.Height);
             this.MaximumSize = new System.Drawing.Size(this.Width, this.Height);
 
+            initializeLanguages();
         }
 
         public void doPreview()
@@ -65,12 +69,26 @@ namespace DIT_FileNameReader
             {
                 if (IsdefaultPath())
                 {
-                    ErrorFrm err = new ErrorFrm("Nem adtál meg könyvtárat a listázásához!");
+                    string errortext="";
+                    switch (selectedLang)
+                    {
+                        case 0: errortext = "You didn't specified a folder where list files!";break;
+                        case 1: errortext = "Nem adtál meg könyvtárat a listázásához!";break;
+                        default:break;
+                    }
+                    ErrorFrm err = new ErrorFrm(errortext);
                     err.Show();
                 }
                 if (isExtensionFiltered==true && !(extension.StartsWith("*")))
                 {
-                    ErrorFrm err = new ErrorFrm("Helytelen formában adtad meg a kiterjesztést! \n Helyes példa: *.png");
+                    string errortext = "";
+                    switch (selectedLang)
+                    {
+                        case 0: errortext = "You specified the extension with wrong format! \nCorrect example: *.png"; break;
+                        case 1: errortext = "Helytelen formában adtad meg a kiterjesztést! \nHelyes példa: *.png"; break;
+                        default: break;
+                    }
+                    ErrorFrm err = new ErrorFrm(errortext);
                     err.Show();
                 }
             }
@@ -160,7 +178,7 @@ namespace DIT_FileNameReader
         }
         public bool IsdefaultPath()
         {
-            if (DirectoryBox.Text== "Pl.: D:/Zenek")
+            if (DirectoryBox.Text== "Pl.: D:/Zenek" || DirectoryBox.Text== "For example: D:/Music")
             {
                 return true;
             }
@@ -287,8 +305,66 @@ namespace DIT_FileNameReader
 
         }
 
+        private void initializeLanguages()
+        {
+            LanguageBox.Items.Clear();
+            for (int i = 0; i < languages.Length; i++)
+            {
+                LanguageBox.Items.Add(languages[i].ToString());
+            }
+            LanguageBox.SelectedIndex = selectedLang;
+
+        }
+        private void LanguageManager()
+        {
+            
+            switch (selectedLang)
+            {
+                case 0: English(); break;
+                case 1: Hungarian(); break;
+                default: break;
+            }
+        }
+        
+
         private void CriteriumBox_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        public void English()
+        {
+            this.Text = "DIT - Filename Reader";
+            button1.Text = "Select folder";
+            label2.Text = "DIT - Filename Reader";
+            label1.Text = "Output preview";
+            linkLabel1.Text = "About..";
+            checkBox2.Text = "Filename filter";
+            checkBox1.Text = "Filenames contains the extension";
+            label4.Text = "Folder path";
+            if (IsdefaultPath())
+            {
+                DirectoryBox.Text = "For example: D:/Music";
+            }
+            button2.Text = "Save to .txt";
+            label3.Text = "or";
+        }
+        public void Hungarian()
+        {
+            this.Text = "DIT - Fájlnév olvasó";
+            button1.Text = "Mappa kiválasztása";
+            label2.Text = "DIT - Fájlnév olvasó";
+            label1.Text = "Kimenet előnézete";
+            linkLabel1.Text = "Részletek..";
+            checkBox2.Text = "Fájlnév szűrő";
+            checkBox1.Text = "Fájlnevek tartalmazzák a kiterjesztést";
+            label4.Text = "Mappa elérési útvonala";
+            if (IsdefaultPath())
+            {
+                DirectoryBox.Text = "Pl.: D:/Zenek";
+            }
+            button2.Text = "Mentés .txt fájlba";
+            label3.Text = "vagy";
 
         }
 
@@ -296,6 +372,13 @@ namespace DIT_FileNameReader
         {
             AboutFrm about = new AboutFrm();
             about.Show();
+        }
+
+        private void LanguageBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            selectedLang = LanguageBox.SelectedIndex;
+            LanguageManager();
         }
     }
 }

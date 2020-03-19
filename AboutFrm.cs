@@ -13,6 +13,7 @@ namespace DIT_FileNameReader
 {
     public partial class AboutFrm : Form
     {
+        
         public AboutFrm()
         {
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
@@ -20,9 +21,35 @@ namespace DIT_FileNameReader
             string version = fvi.FileVersion;
             InitializeComponent();
             this.VersionLabel.Text = version;
-            this.Text = "DIT - Filename Reader - About";
+            initializeLanguages();
         }
 
+
+        private void initializeLanguages()
+        {
+            if (MainFrm.selectedLang==1)
+            {
+                AboutHungary();
+            }
+            if (MainFrm.selectedLang ==0)
+            {
+                AboutEnglish();
+            }
+        }
+        private void AboutHungary()
+        {
+            this.Text = "DIT - Fájlnév olvasó - About";
+            this.label1.Text = "DIT - Fájlnév olvasó";
+            this.label2.Text = "Verzió:";
+            this.label4.Text = "Készítette: Lábodi Dávid - DIT Services";
+        }
+        private void AboutEnglish()
+        {
+            this.Text = "DIT - Filename Reader - About";
+            this.label1.Text = "DIT - Filename Reader";
+            this.label2.Text = "Version:";
+            this.label4.Text = "Created by: Lábodi Dávid - DIT Services";
+        }
         private void AboutFrm_Load(object sender, EventArgs e)
         {
             
@@ -32,6 +59,11 @@ namespace DIT_FileNameReader
             this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.MinimumSize = new System.Drawing.Size(this.Width, this.Height);
             this.MaximumSize = new System.Drawing.Size(this.Width, this.Height);
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://dit-services.tk");
         }
     }
 }

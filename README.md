@@ -3,7 +3,9 @@
 Egy szimpla grafikus alkalmazás egy könyvtárban lévő fájlok neveinek a lekérdezéséhez.
 ### [EN] - Description
 A simple GUI application to list filenames in a directory.
-
+### Changelog - Változtatások
+[HU] Kattints ide, hogy megnézd a [changelog](https://github.com/LabodiDavid/DIT_FileNameReader/blob/master/Changelog.md)-ot.
+[EN] Click here, to see the [changelog](https://github.com/LabodiDavid/DIT_FileNameReader/blob/master/Changelog.md).
 ## [HU/EN] - Features
  - [HU] Folyamatos előnézetet ad a jelenlegi beállításaidhoz mérten a fájlnév lekérdezésedről.
  [EN] Provides a continuous preview of your filename query relative your current settings.
@@ -17,4 +19,5 @@ A simple GUI application to list filenames in a directory.
 ### TO DO / Upcoming features - jövőben érkező funkciók:
 - [ ] - Fájlok megszámlálása az adott mappában / Counting files in a given directory
 - [ ] - Megszámlálás a szűrőnek megfelelve / Counting files according to the filter
+- [ ] - Implementálás a DIT App-ba, DIT Updater-hez való hozzácsatolás. / Implement to the DIT App, attach to DIT Updater.
 És még sok más ami nincs ide lejegyezve.. And many more that is not listed here..

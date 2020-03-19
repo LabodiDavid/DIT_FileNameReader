@@ -42,6 +42,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.LanguageBox = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // FilenamesBox
@@ -110,11 +112,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(208, 9);
+            this.label2.Location = new System.Drawing.Point(287, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(377, 24);
+            this.label2.Size = new System.Drawing.Size(225, 24);
             this.label2.TabIndex = 6;
-            this.label2.Text = "DIT - FileName Reader / Fájlnév olvasó";
+            this.label2.Text = "DIT - FileName Reader";
             // 
             // CriteriumBox
             // 
@@ -167,11 +169,31 @@
             this.linkLabel1.Text = "Részletek..";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(1, 392);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(91, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Nyelv (Language)";
+            // 
+            // LanguageBox
+            // 
+            this.LanguageBox.FormattingEnabled = true;
+            this.LanguageBox.Location = new System.Drawing.Point(4, 408);
+            this.LanguageBox.Name = "LanguageBox";
+            this.LanguageBox.Size = new System.Drawing.Size(88, 30);
+            this.LanguageBox.TabIndex = 13;
+            this.LanguageBox.SelectedIndexChanged += new System.EventHandler(this.LanguageBox_SelectedIndexChanged);
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.LanguageBox);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -194,20 +216,21 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox FilenamesBox;
         private System.Windows.Forms.FolderBrowserDialog DirectoryDialog;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         public System.Windows.Forms.Button button1;
         public System.Windows.Forms.TextBox DirectoryBox;
         public System.Windows.Forms.CheckBox checkBox1;
         public System.Windows.Forms.TextBox CriteriumBox;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label label5;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.LinkLabel linkLabel1;
+        public System.Windows.Forms.CheckBox checkBox2;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Button button2;
+        public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.TextBox FilenamesBox;
+        public System.Windows.Forms.ListBox LanguageBox;
     }
 }
 
