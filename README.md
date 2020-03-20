@@ -6,6 +6,9 @@ A simple GUI application to list filenames in a directory.
 ### Changelog - Változtatások
 [HU] Kattints ide, hogy megnézd a [changelog](https://github.com/LabodiDavid/DIT_FileNameReader/blob/master/Changelog.md)-ot.
 [EN] Click here, to see the [changelog](https://github.com/LabodiDavid/DIT_FileNameReader/blob/master/Changelog.md).
+### Szükségletek / Requirements:
+Győzödj meg róla, hogy a legfrissebb .NET framework van az eszközödön.
+Ensure that your device has the latest version of the .NET framework.
 ## [HU/EN] - Features
  - [HU] Folyamatos előnézetet ad a jelenlegi beállításaidhoz mérten a fájlnév lekérdezésedről.
  [EN] Provides a continuous preview of your filename query relative your current settings.
